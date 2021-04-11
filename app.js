@@ -14,6 +14,7 @@ const app = express();
 // const userRoutes = require('./api/users');
 // const countryRouter = require('./api/countries');
 // const postsRouter = require('./api/posts');
+const empRoutes = require('./routes/employee-list');
 
 //DB Connection
 // mongoose.connect('mongodb://localhost:27017/store-app', {useNewUrlParser: true, useUnifiedTopology: true});
@@ -55,6 +56,7 @@ const app = express();
 // app.use('/students',studentDataRouter);
 // app.use('/countries', countryRouter)
 // app.use('/posts',postsRouter);
+app.use('/employees',empRoutes);
 
 app.use((req, res, next)=>{
     const error = new Error('Not Founded');

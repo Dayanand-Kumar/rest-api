@@ -17,7 +17,7 @@ const productRoutes = require('./api/products');
 const empRoutes = require('./routes/employee-list');
 
 //DB Connection
-mongoose.connect('mongodb://localhost:27017/store-app', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb://localhost:27017/store-app', {useNewUrlParser: true, useUnifiedTopology: true, TopologyDescription:true});
 mongoose.connection
 .once("Open", () => console.log("Connected"))
 .on("error", error => {

@@ -4,7 +4,7 @@ const app = express();
 // const bodyParser = require('body-parser');
 // const morgan = require('morgan');
 const mongoose = require('mongoose');
-// const productRoutes = require('./api/products');
+const productRoutes = require('./api/products');
 // const empRoutes = require('./api/employee-list');
 // const studentRouter = require('./models/student');
 // const photosRouter = require('./api/photos');
@@ -46,7 +46,7 @@ mongoose.set('useCreateIndex', true);
 
 //middleware
 //Routes which Handle Requests
-// app.use('/products', productRoutes);
+
 // app.use('/users', userRoutes);
 // app.use('/employee', empRoutes);
 // app.use('/student', studentRouter);
@@ -57,6 +57,7 @@ mongoose.set('useCreateIndex', true);
 // app.use('/countries', countryRouter)
 // app.use('/posts',postsRouter);
 app.use('/employees',empRoutes);
+app.use('/products', productRoutes);
 
 app.use((req, res, next)=>{
     const error = new Error('Not Founded!');

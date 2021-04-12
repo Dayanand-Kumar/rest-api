@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 // const bodyParser = require('body-parser');
 // const morgan = require('morgan');
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 // const productRoutes = require('./api/products');
 // const empRoutes = require('./api/employee-list');
 // const studentRouter = require('./models/student');
@@ -17,15 +17,15 @@ const app = express();
 const empRoutes = require('./routes/employee-list');
 
 //DB Connection
-// mongoose.connect('mongodb://localhost:27017/store-app', {useNewUrlParser: true, useUnifiedTopology: true});
-// mongoose.connection
-// .once("Open", () => console.log("Connected"))
-// .on("error", error => {
-//     console.log("Youe Error", error);
-// })
-// mongoose.set('useNewUrlParser', true);
-// mongoose.set('useFindAndModify', false);
-// mongoose.set('useCreateIndex', true);
+mongoose.connect('mongodb://localhost:27017/store-app', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connection
+.once("Open", () => console.log("Connected"))
+.on("error", error => {
+    console.log("Youe Error", error);
+})
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
 
 
 // app.use(morgan('dev')); //This is for Logging the details on console
@@ -59,18 +59,18 @@ const empRoutes = require('./routes/employee-list');
 app.use('/employees',empRoutes);
 
 app.use((req, res, next)=>{
-    const error = new Error('Not Founded');
+    const error = new Error('Not Founded!');
     error.status = 404;
     next(error);
 })
 
-// mongoose.Promise = global.Promise;
-// app.use((error, req, res, next) =>{
-//     res.status(error.status || 500);
-//     res.json({
-//         error : {
-//             message : error.message
-//         }
-//     })
-// })
+mongoose.Promise = global.Promise;
+app.use((error, req, res, next) =>{
+    res.status(error.status || 500);
+    res.json({
+        error : {
+            message : error.message
+        }
+    })
+})
 module.exports = app;
